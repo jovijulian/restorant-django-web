@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% if pesan %}
+    <div class="alert alert-success">{{ pesan }}</div>
+    {% endif %}
+    <div class="col-md-4">
+      <form action="{% url 'tambah_table' %}" method="post">
+        {% csrf_token %} {{ form }}
+        <button class="btn btn-primary">Add data</button>
+        <a href="/table" class="btn btn-danger">Kembali</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

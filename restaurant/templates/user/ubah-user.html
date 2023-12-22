@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    {% for message in messages %} {% if message %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% endif %} {% endfor %}
+    <div class="col-md-4">
+      <form action="{% url 'ubah_user' user.id %}" method="post">
+        {% csrf_token %} {{ form }}
+        <button class="btn btn-primary">Add data</button>
+        <a href="/user" class="btn btn-danger">Kembali</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

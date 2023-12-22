@@ -1,0 +1,93 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <ul>
+      <li>
+        <a href="{% url 'tambah_table' %}" class="btn btn-primary"
+          >Tambah Data</a
+        >
+      </li>
+      <li><a href="/" class="btn btn-danger">Kembali</a></li>
+    </ul>
+
+    {% for message in messages %} {% if message %}
+    <div class="alert alert-success">{{ message }}</div>
+    {% endif %} {% endfor %}
+    <div class="col-md-12">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>Nomor Meja</th>
+            <th>Kapasitas</th>
+            <th>Status</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for table in tables %}
+          <tr>
+            <td>
+              <a href="{% url 'ubah_table' table.id %}"
+                >{{table.table_number}}</a
+              >
+            </td>
+            <td>{{table.table_capacity}}</td>
+            <td>{{table.table_status}}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#hapus-{{table.id}}"
+              >
+                Hapus
+              </button>
+            </td>
+            <div
+              class="modal fade"
+              id="hapus-{{table.id}}"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Hapus Data
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">Apakah yakin menghapus data?</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <a
+                      href="{% url 'hapus_table' table.id %}"
+                      class="btn btn-primary"
+                      >Ya</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

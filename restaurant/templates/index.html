@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <div class="row">
+    <ul>
+      <li><a href="{% url 'user' %}" class="btn btn-primary">User</a></li>
+      <li><a href="{% url 'table' %}" class="btn btn-primary">Table</a></li>
+      <li><a href="{% url 'menu' %}" class="btn btn-primary">Menu</a></li>
+      <li><a href="{% url 'formula' %}" class="btn btn-primary">Formula</a></li>
+      <li><a href="{% url 'order' %}" class="btn btn-primary">Order</a></li>
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
